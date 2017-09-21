@@ -1,0 +1,31 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>SemEval 2018 Task 5 Data Viewer</title>
+</head>
+<body>
+<form action="/query/" method="post">
+    {% csrf_token %}
+    <input type="text" name="question">
+    <select name="subtask">
+        <option value="1" selected="">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <input type="submit" value="Submit">
+</form>
+
+<h1><b>{{ qu }}</b></h1>
+
+{% for element in rlt %}
+    <h3><b>{{ element.title }}</b></h3>
+    <p><font size=2>(<i>{{ element.ID }}</i>) Created in {{ element.DCT }}</font></p>
+    {% for sentence in element.body %}
+        <p>&nbsp&nbsp{{ sentence }}</p>
+    {% endfor %}
+    <br>
+{% endfor %}
+
+
+</body>
+</html>
